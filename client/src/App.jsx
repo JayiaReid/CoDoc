@@ -16,7 +16,7 @@ function App() {
     const formData = new FormData()
     formData.append("file", file);
     try {
-      const response = await fetch("http://localhost:8000/save/single", {
+      const response = await fetch("http://localhost:8000/api/save/single", {
         method: "POST",
         body: formData,
       });
@@ -35,7 +35,7 @@ function App() {
       formData.append("files", files[i]);
     }
     try {
-      const response = await fetch("http://localhost:8000/save/multiple", {
+      const response = await fetch("http://localhost:8000/api/save/multiple", {
         method: "POST",
         body: formData,
       });
@@ -50,7 +50,7 @@ function App() {
   // fetch files
   const getSingleImg = async () => {
     try {
-      const response = await fetch("http://localhost:8000/fetch/single");
+      const response = await fetch("http://localhost:8000/api/fetch/single");
       const file = await response.json();
       const base64URL = `data:application/octet-stream;base64,${file.data}`
       let info = {
@@ -67,7 +67,7 @@ function App() {
 
   const getAllImages = async () => {
     try {
-      const response = await fetch("http://localhost:8000/fetch/all")
+      const response = await fetch("http://localhost:8000/api/fetch/all")
       const data = await response.json();
 
       const fileData = data.files.map((file) => {
@@ -88,7 +88,7 @@ function App() {
 
   const getMultipleImages = async () => {
     try {
-      const response = await fetch("http://localhost:8000/fetch/multiple")
+      const response = await fetch("http://localhost:8000/api/fetch/multiple")
       const data = await response.json();
 
       const fileData = data.files.map((file) => {
@@ -112,7 +112,7 @@ function App() {
     const blob = await res.blob();
       const formData = new FormData()
       formData.append("file", blob, "dog.jpg")
-      const response = await fetch("http://localhost:8000/save/single", {
+      const response = await fetch("http://localhost:8000/api/save/single", {
         method: "POST",
         body: formData,
       });

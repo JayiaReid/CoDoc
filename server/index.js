@@ -10,8 +10,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(express.json())
 
-app.use('/fetch', fetch);
-app.use('/save', save);
+app.use('/api/fetch', fetch);
+app.use('/api/save', save);
 
 app.use((req, res) => {
     res.status(404).json('Page not found');
